@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link href="./fontawesome-free-5.12.1-web/css/all.min.css rel=" stylesheet">
+  <title>My Todo List</title>
+</head>
+<div class="page-content page-container" id="page-content">
+  <div class="padding">
+    <div class="row container  justify-content-center">
+      <div class="col-lg-12">
+        <div class="card px-3">
+          <div class="card-body">
+            <h4 class="card-title">Amazing Todo List</h4>
+            <form class="needs-validation" action="#">
+              <div class="add-items d-flex">
+                <input name="myInput" id="myInput" type="text" class="form-control todo-list-input"
+                  placeholder="What do you need to do today?" required>
+                <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn">Add</button>
+              </div>
+            </form>
+            <div class="list-wrapper">
+              <ul class="d-flex flex-column-reverse todo-list">
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<body>
+  <script src="./fontawesome-free-5.12.1-web/js/all.min.js"></script>
+  <!--<script src="app.js"></script>-->
+  <script src="localStorage.js"></script>
+</body>
+
+</html>
