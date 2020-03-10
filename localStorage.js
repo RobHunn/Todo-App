@@ -18,7 +18,7 @@ if(localStorage.getItem('todos')){
       <li id="${e.uuId}" class="${e.completed}">
         <div class="form-check">
           <label class="form-check-label">
-            <input class="checkbox" type="checkbox" checked="">
+            <input class="checkbox" type="checkbox" ${e.checked}>
             ${e.todo}
             <i class="input-helper"></i>
           </label>
@@ -28,7 +28,6 @@ if(localStorage.getItem('todos')){
       `;
     })
   todoList.innerHTML = output;
-
 }
 
 // create new todo and save to localStorage
@@ -54,18 +53,20 @@ const handelSubmit = (e) =>{
       `;
   todoList.appendChild(li);
   li.innerHTML = output;
-  storage.push({ todo : formInput, completed : '', uuId : uuId });
+  storage.push({ todo : formInput, completed : '', uuId : uuId, checked: '' });
   localStorage.setItem("todos", JSON.stringify(storage));
   clear.reset();
 };
 
-// the crazy looking if else at the bottom is because of the fontawesome svg i used for delete btn, its tag name is 'svg' /// but its just a thin wrapper the inner image is a path tag sooo..... yeah... pain in the butt... basicly 2 delete buttons....
+// the crazy looking if else at the bottom is because of the fontawesome svg i used for delete btn, its tag name is 'svg' /// but its just a thin wrapper but inner image is a path tag sooo yeah... pain in the butt... basicly 2 delete buttons.
 
 //function below handles onclick for line strike through aka task completed and delete, also updates local storage on delete and task completed.
 
 const handelClick = (e)=>{
   let node = e.target.tagName
     if(node === 'INPUT'){//top half task complete
+        let checked = e.target.parentElement.parentElement.parentElement
+        checked.setAttribute('checked', 'checked');
         e.target.parentElement.parentElement.parentElement.classList.toggle('completed');
         let li = e.target.parentElement.parentElement.parentElement
         let id = li.getAttribute('id')
@@ -74,7 +75,7 @@ const handelClick = (e)=>{
         let myObj = JSON.parse(localStorage.getItem("todos"));
         let classN = li.classList.value;
         let objectFound = myObj.findIndex(obj => obj.uuId == id);
-        let alteredObj = { 'todo' : todo, 'completed' : classN, uuId : id }
+        let alteredObj = { 'todo' : todo, 'completed' : classN, uuId : id, 'checked':'checked' }
         myObj.splice(objectFound,1,alteredObj)
         storage = myObj.slice();
         localStorage.setItem("todos", JSON.stringify(storage)); 
